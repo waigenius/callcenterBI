@@ -1,0 +1,574 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/30/2022 5:26:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-ML1EU7PT"
+  DTS:CreatorName="LAPTOP-ML1EU7PT\CHEBBI"
+  DTS:DTSID="{F213F7DC-1676-4490-AFC3-77C9957447F5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.521.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{1787A0B6-441B-473D-86DF-589A923F9D40}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{BBEAAB7B-CF23-48B8-96C1-F15796368F61}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\CHEBBI\Downloads\Projet SSIS\Data\Lookup data.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Load into LookupDataCallTypes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{CCDBFFB3-6F75-4935-BB80-0745FE4AFA4C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Load into LookupDataCallTypes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="DCNV - To Unicode"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Inputs[Entrée de conversion de données].Columns[CallTypeID]"
+                      cachedDataType="r8"
+                      cachedName="CallTypeID"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].Columns[CallTypeID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie de conversion de données].Columns[CallTypeID_U]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie de conversion de données].Columns[CallTypeID_U]"
+                      name="CallTypeID_U"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].Columns[CallTypeID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Source Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Source Excel"
+              name="EX_SRC - LookupDataCallTypes"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">'Call Types$'</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappage des paramètres de la commande SQL en variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel]"
+                  name="Sortie de source Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].Columns[CallTypeID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].ExternalColumns[CallTypeID]"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].Columns[CallTypeID]"
+                      name="CallTypeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].Columns[CallTypeLabel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].ExternalColumns[CallTypeLabel]"
+                      length="255"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].Columns[CallTypeLabel]"
+                      name="CallTypeLabel"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].ExternalColumns[CallTypeID]"
+                      dataType="r8"
+                      name="CallTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].ExternalColumns[CallTypeLabel]"
+                      dataType="wstr"
+                      length="255"
+                      name="CallTypeLabel" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie d'erreur de source Excel]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie d'erreur de source Excel].Columns[CallTypeID]"
+                      dataType="r8"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie d'erreur de source Excel].Columns[CallTypeID]"
+                      name="CallTypeID" />
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie d'erreur de source Excel].Columns[CallTypeLabel]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie d'erreur de source Excel].Columns[CallTypeLabel]"
+                      name="CallTypeLabel" />
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="OLE_DST - STA LookupDataCallTypes"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[LookupDataCallTypes]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Connections[OleDbConnection]"
+                  connectionManagerID="{828273B6-C476-4357-BC7C-4B7E5A082586}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CallCenter_STA]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Inputs[Entrée de destination OLE DB].Columns[CallTypeLabel]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CallTypeLabel"
+                      externalMetadataColumnId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Inputs[Entrée de destination OLE DB].ExternalColumns[CallTypeLabel]"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel].Columns[CallTypeLabel]" />
+                    <inputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Inputs[Entrée de destination OLE DB].Columns[CallTypeID_U]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CallTypeID_U"
+                      externalMetadataColumnId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Inputs[Entrée de destination OLE DB].ExternalColumns[CallTypeID]"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie de conversion de données].Columns[CallTypeID_U]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Inputs[Entrée de destination OLE DB].ExternalColumns[CallTypeID]"
+                      dataType="wstr"
+                      length="255"
+                      name="CallTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Inputs[Entrée de destination OLE DB].ExternalColumns[CallTypeLabel]"
+                      dataType="wstr"
+                      length="255"
+                      name="CallTypeLabel" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Load into LookupDataCallTypes.Paths[Sortie de conversion de données]"
+              endId="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de conversion de données"
+              startId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\DFT - Load into LookupDataCallTypes.Paths[Sortie de source Excel]"
+              endId="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode.Inputs[Entrée de conversion de données]"
+              name="Sortie de source Excel"
+              startId="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes.Outputs[Sortie de source Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Empty STA LookupDataCallTypes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{8955EED6-8F8A-4AB6-996E-D547B0F3F051}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Empty STA LookupDataCallTypes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{828273B6-C476-4357-BC7C-4B7E5A082586}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE lookupdatacalltypes;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{4D755D78-DF68-4349-81C2-A385383688D1}"
+      DTS:From="Package\SQL - Empty STA LookupDataCallTypes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT - Load into LookupDataCallTypes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="255.2,41.6"
+          Id="Package\DFT - Load into LookupDataCallTypes"
+          TopLeft="242.499990363916,195.000001549721" />
+        <NodeLayout
+          Size="265.6,41.6"
+          Id="Package\SQL - Empty STA LookupDataCallTypes"
+          TopLeft="241.666657063697,59.8000004752477" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="372.283323713806,101.400000475248">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,93.6000010744728"
+              Start="0,0"
+              End="0,86.1000010744728">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,86.1000010744728" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - Load into LookupDataCallTypes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="231.2,41.6"
+          Id="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes"
+          TopLeft="279.16665557358,78.0000006198883" />
+        <NodeLayout
+          Size="260,41.6"
+          Id="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes"
+          TopLeft="271.666655871604,277.333335537381" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\DFT - Load into LookupDataCallTypes\DCNV - To Unicode"
+          TopLeft="300.833321379291,171.600001363754" />
+        <EdgeLayout
+          Id="Package\DFT - Load into LookupDataCallTypes.Paths[Sortie de source Excel]"
+          TopLeft="394.76665557358,119.600000619888">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.13333419428926,52.0000007438659"
+              Start="0,0"
+              End="-9.13333419428926,44.5000007438659">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.000000371933" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.000000371933"
+                    Point2="0,26.000000371933"
+                    Point3="-4,26.000000371933" />
+                  <mssgle:LineSegment
+                    End="-5.13333419428926,26.000000371933" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.13333419428926,26.000000371933"
+                    Point2="-9.13333419428926,26.000000371933"
+                    Point3="-9.13333419428926,30.000000371933" />
+                  <mssgle:LineSegment
+                    End="-9.13333419428926,44.5000007438659" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load into LookupDataCallTypes.Paths[Sortie de conversion de données]"
+          TopLeft="385.633321379291,213.200001363754">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16.0333344923125,64.1333341736265"
+              Start="0,0"
+              End="16.0333344923125,56.6333341736265">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.0666670868132" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.0666670868132"
+                    Point2="0,32.0666670868132"
+                    Point3="4,32.0666670868132" />
+                  <mssgle:LineSegment
+                    End="12.0333344923125,32.0666670868132" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.0333344923125,32.0666670868132"
+                    Point2="16.0333344923125,32.0666670868132"
+                    Point3="16.0333344923125,36.0666670868132" />
+                  <mssgle:LineSegment
+                    End="16.0333344923125,56.6333341736265" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load into LookupDataCallTypes\EX_SRC - LookupDataCallTypes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load into LookupDataCallTypes\OLE_DST - STA LookupDataCallTypes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
